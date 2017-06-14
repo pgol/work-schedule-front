@@ -5,7 +5,7 @@ function usersList({users}) {
 
   if (users.length > 0) {
     usersItems = users.map(item => (
-      <li key={item.id}>{item.username}</li>
+      <li key={item.id}>{item.username} @{item.email}</li>
     ))
   } else {
     usersItems = [];
