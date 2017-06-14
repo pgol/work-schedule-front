@@ -4,3 +4,4 @@ Users TODO:
  - immutablejs
  - redux-form
  - tests
+ - selectors (where to place them ?!)
