@@ -1,9 +1,15 @@
 import React from 'react';
 
-export default function usersList({ users }) {
-  const usersItems = users.map(user => (
-    <li>{user.username}</li>
-  ));
+function usersList({users}) {
+  let usersItems;
+
+  if (users.length > 0) {
+    usersItems = users.map(item => (
+      <li key={item.id}>{item.username}</li>
+    ))
+  } else {
+    usersItems = [];
+  }
 
   return (
     <div>
@@ -13,3 +19,5 @@ export default function usersList({ users }) {
     </div>
   )
 }
+
+export default usersList;
