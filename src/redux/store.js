@@ -6,7 +6,8 @@ import createSagaMiddleare from 'redux-saga';
 import {all} from 'redux-saga/effects';
 import {reducer as formReducer} from 'redux-form';
 
-import users, {watchGetUsers} from '../ducks/user.duck';
+import users from '../ducks/user.duck';
+import {watchGetUsers} from '../sagas/user.saga';
 
 //saga setup
 const sagaMiddleware = createSagaMiddleare();
