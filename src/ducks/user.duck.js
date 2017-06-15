@@ -1,4 +1,4 @@
-import {createAction} from 'redux-actions';
+import {createAction, handleActions} from 'redux-actions';
 import {call, put, takeEvery} from 'redux-saga/effects';
 
 import createDataFetcher from '../services/data-fetcher';
@@ -10,17 +10,11 @@ const usersService = createUsersService({
   })
 });
 
-//actions
-const LOAD_USERS = 'users/LOAD';
-const REQUEST = 'users/REQUEST';
-const RECEIVE = 'users/RECEIVE';
-const ERROR = 'users/ERROR';
-
 //action creators
-export const loadUsers = createAction(LOAD_USERS);
-export const requestUsers = createAction(REQUEST);
-export const receiveUsers = createAction(RECEIVE);
-export const errorUsers = createAction(Error(ERROR));
+export const loadUsers = createAction('users/LOAD');
+export const requestUsers = createAction('users/REQUEST');
+export const receiveUsers = createAction('users/RECEIVE');
+export const errorUsers = createAction(Error('users/ERROR'));
 
 //sagas
 export function* getUsers() {
@@ -30,7 +24,7 @@ export function* getUsers() {
 }
 
 export function* watchGetUsers() {
-  yield takeEvery(LOAD_USERS, getUsers);
+  yield takeEvery(loadUsers().type, getUsers);
 }
 
 //reducers
@@ -40,23 +34,18 @@ const initialState = {
   loading: false
 };
 
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case REQUEST: {
-      return {
-        ...state,
-        loading: true
-      };
+export default handleActions({
+    [requestUsers().type]: (state) => {
+        return {
+            ...state,
+            loading: true
+        };
+    },
+    [receiveUsers().type]: (state, action) => {
+        return {
+            ...state,
+            items: action.payload,
+            loading: false
+        }
     }
-    case RECEIVE: {
-      return {
-        ...state,
-        items: action.payload,
-        loading: false
-      }
-    }
-    default: {
-      return state;
-    }
-  }
-}
+}, initialState);
