@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm} from 'redux-form/immutable';
 
 let UsersForm = props => {
   return (

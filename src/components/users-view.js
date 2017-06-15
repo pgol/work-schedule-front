@@ -15,7 +15,7 @@ class UsersView extends Component {
     return (
       <div>
         <UsersForm onSubmit={this.props.onSubmitForm}/>
-        <UsersList users={this.props.users}/>
+        <UsersList users={this.props.users.toJS()}/>
       </div>
     )
   }

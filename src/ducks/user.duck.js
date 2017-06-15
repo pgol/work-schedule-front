@@ -1,5 +1,6 @@
 import {createAction, handleActions} from 'redux-actions';
 import {call, put, takeEvery} from 'redux-saga/effects';
+import {fromJS, List, Map} from 'immutable';
 
 import createDataFetcher from '../services/data-fetcher';
 import createUsersService from '../services/users-service';
@@ -28,24 +29,20 @@ export function* watchGetUsers() {
 }
 
 //reducers
-const initialState = {
-  items: [],
-  errors: [],
+const initialState = Map({
+  items: List([]),
+  errors: List([]),
   loading: false
-};
+});
 
 export default handleActions({
-    [requestUsers().type]: (state) => {
-        return {
-            ...state,
-            loading: true
-        };
-    },
-    [receiveUsers().type]: (state, action) => {
-        return {
-            ...state,
-            items: action.payload,
-            loading: false
-        }
-    }
+  [requestUsers().type]: (state) => {
+    return state
+      .set('loading', true);
+  },
+  [receiveUsers().type]: (state, action) => {
+    return state
+      .set('items', fromJS(action.payload))
+      .set('loading', false);
+  }
 }, initialState);

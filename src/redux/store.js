@@ -1,4 +1,6 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import {combineReducers} from 'redux-immutable';
+import {Iterable} from 'immutable';
 import {createLogger} from 'redux-logger';
 import createSagaMiddleare from 'redux-saga';
 import {all} from 'redux-saga/effects';
@@ -20,7 +22,11 @@ const rootReducer = combineReducers({
   form: formReducer
 });
 
-const middlewares = [sagaMiddleware, createLogger()];
+const logger = createLogger({
+  stateTransformer: (state) => Iterable.isIterable(state) ? state.toJSON() : state, //for Immutable.js
+});
+
+const middlewares = [sagaMiddleware, logger];
 
 
 export default createStore(
