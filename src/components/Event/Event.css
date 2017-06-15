@@ -1,0 +1,19 @@
+.label {
+    line-height: 2em;
+    width: 90%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hour-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: aliceblue;
+    padding: 5px 5px;
+}
+
+.hour {
+    padding: 0 5px;
+}
