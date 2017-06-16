@@ -1,20 +1,17 @@
-import React, {Component} from 'react';
-import './App.css';
-import UsersView from  './components/users-view';
-import Event from './components/Event/Event';
-import { events } from './tools/tools';
+import React, { Component } from 'react'
+import './App.css'
+import UsersView from  './components/users-view'
+import Day from './components/Day/Day'
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <div className="App">
         <UsersView />
-        { events.map((event, index) => (
-          <Event event={event}/>
-        ))}
+        <Day />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

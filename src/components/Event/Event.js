@@ -24,20 +24,12 @@ class Event extends React.Component {
       }
     })
   }
-  //multiple events rozkmina
-  /*
-  - assign multiple spans in the center name of an event
-  (it will flex into container) <- wins
-  - create mechanism that will 'merge' names
-  - let other events interfere with jsx of this component (how?)
-   */
   render () {
     const timespan = this.state.timespan
     const event = this.state.event
     return (
       <div className="event-container" onClick={this.setLabel}>
         {timespan.map( e => <div className="hour-container">
-          <span className="hour">{e}</span>
           <div className="label">
             <span>
               { isCenter(event, e) ? event.name : ''}

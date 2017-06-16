@@ -6,7 +6,7 @@
     text-overflow: ellipsis;
 }
 
-.hour-container {
+.event-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,6 +14,12 @@
     padding: 5px 5px;
 }
 
+.hour-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .hour {
     padding: 0 5px;
+    align-self: flex-start;
 }
