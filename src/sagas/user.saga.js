@@ -27,7 +27,7 @@ export function* watchGetUsers() {
 
 export function* createUser({payload}) {
   try {
-    const user = yield call(usersService.addUser, payload);
+    yield call(usersService.addUser, payload);
     yield put(loadUsers());
     yield put(submitUserDone());
   } catch(error) {
