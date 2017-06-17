@@ -26,9 +26,14 @@ export function* watchGetUsers() {
 }
 
 export function* createUser({payload}) {
-  const user = yield call(usersService.addUser, payload); //TODO check how reject works here
-  yield put(loadUsers());
-  yield put(submitUserDone());
+  try {
+    const user = yield call(usersService.addUser, payload);
+    yield put(loadUsers());
+    yield put(submitUserDone());
+  } catch(error) {
+    //TODO show some general error notification
+    console.error(error);
+  }
 }
 
 
