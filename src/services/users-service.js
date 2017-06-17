@@ -3,6 +3,9 @@ function usersService({dataFetcher}) {
   return {
     getUsers() {
       return dataFetcher.get('/users').then(unwrap);
+    },
+    addUser(user) {
+      return dataFetcher.post('/users', user).then(unwrap);
     }
   }
 }
