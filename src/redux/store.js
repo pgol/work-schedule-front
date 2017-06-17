@@ -3,19 +3,14 @@ import {combineReducers} from 'redux-immutable';
 import {Iterable} from 'immutable';
 import {createLogger} from 'redux-logger';
 import createSagaMiddleare from 'redux-saga';
-import {all} from 'redux-saga/effects';
 import {reducer as formReducer} from 'redux-form';
 
 import users from '../ducks/user.duck';
-import {watchGetUsers} from '../sagas/user.saga';
+import rootSaga from '../sagas';
 
 //saga setup
 const sagaMiddleware = createSagaMiddleare();
-function* rootSaga() {
-  yield all([
-    watchGetUsers()
-  ]);
-}
+
 
 //reducers setup
 const rootReducer = combineReducers({

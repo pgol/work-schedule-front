@@ -1,6 +1,6 @@
-import {call, put, takeEvery} from 'redux-saga/effects';
+import {call, put, takeEvery, all} from 'redux-saga/effects';
 
-import {requestUsers, receiveUsers, loadUsers} from '../ducks/user.duck';
+import {requestUsers, receiveUsers, loadUsers, submitUser, submitUserDone} from '../ducks/user.duck';
 import createDataFetcher from '../services/data-fetcher';
 import createUsersService from '../services/users-service';
 
@@ -13,10 +13,32 @@ const usersService = createUsersService({
 //sagas
 export function* getUsers() {
   yield put(requestUsers());
-  const users = yield call(usersService.getUsers, '/users');
-  yield put(receiveUsers(users));
+  try {
+    const users = yield call(usersService.getUsers);
+    yield put(receiveUsers(users));
+  } catch(error) {
+    yield put(receiveUsers(error));
+  }
 }
 
 export function* watchGetUsers() {
   yield takeEvery(loadUsers().type, getUsers);
+}
+
+export function* createUser({payload}) {
+  const user = yield call(usersService.addUser, payload); //TODO check how reject works here
+  yield put(loadUsers());
+  yield put(submitUserDone());
+}
+
+
+export function* watchSubmitUser() {
+  yield takeEvery(submitUser().type, createUser)
+}
+
+export default function* rootSaga() {
+  yield all([
+    watchGetUsers(),
+    watchSubmitUser()
+  ]);
 }
