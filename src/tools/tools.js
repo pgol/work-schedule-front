@@ -6,21 +6,18 @@ export function createHours (start, stop, step) {
     date = addStep(date, step)
   }
 
-  //get start hour in format like 16:00
-  // increment by custom function creating from 16:00 16:30 etc
-  //repeat until stop is reached
   return hours
 }
 
-function addStep(date, step) {
-  if (date.minute + step >= 60) {
-    date.minute = (date.minute + step) % 60
-    date.hour++
+function addStep(initialHours, step) {
+  let hours = Object.assign({}, initialHours)
+  if (hours.minute + step >= 60) {
+    hours.minute = (hours.minute + step) % 60
+    hours.hour++
   } else {
-    date.minute += step
+    hours.minute += step
   }
-  console.log(date)
-  return date
+  return hours
 }
 
 export function createDate (hours, minutes) {
@@ -49,7 +46,9 @@ export function generateHourSpan (event) {
  * @returns {boolean} - flag saying if hour is in center time of event
  */
 export function isCenter (event, hour) {
-  return Math.floor(event.start + ((event.end - event.start) / 2)) === hour
+  let eventCenter = Math.floor(event.start + ((event.end - event.start) / 2))
+  let hourCenter = !hour.minute ? hour.hour : false
+  return eventCenter === hourCenter
 }
 
 export const events = [
@@ -57,12 +56,14 @@ export const events = [
     start: 6,
     end: 12,
     name: 'Dinner',
-    person: 'SomeOne'
+    person: 'SomeOne',
+    color: '#efefef'
   },
   {
-    start: 12,
+    start: 10,
     end: 17,
     name: 'Being awesome',
-    person: 'SomeOne'
+    person: 'SomeOne',
+    color: 'rgb(120, 250, 240)'
   }
 ]

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {loadUsers} from '../ducks/user.duck';
-import {getUsers as getUsersSelector} from '../selectors/user.selectors';
+import {loadUsers} from '../../ducks/user.duck';
+import {getUsers as getUsersSelector} from '../../selectors/user.selectors';
 import UsersList from './users-list';
 import UsersForm from './users-form';
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
-import UsersView from  './components/users-view'
-import Day from './components/Day/Day'
+import UsersView from  './components/users/users-view'
+import Day from './components/day/day-view'
 
 class App extends Component {
   render () {

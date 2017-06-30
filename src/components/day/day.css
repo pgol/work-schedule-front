@@ -1,0 +1,18 @@
+.day-container {
+    display: flex;
+    background-color: aliceblue;
+    padding: 5px 5px;
+}
+
+.event-container {
+    display: flex;
+    justify-content: space-between;
+    line-height: 2em;
+}
+
+.label {
+    padding: 0 10px;
+}
+.hour {
+    padding: 0 10px;
+}
