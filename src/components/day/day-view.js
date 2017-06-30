@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './day.css'
-import { events } from '../../tools/tools'
+import { events, createDate } from '../../tools/tools'
 
 import { defineHours } from '../../ducks/day.duck'
 import { getHours as getHoursSelector } from '../../selectors/day.selectors'
@@ -17,13 +17,12 @@ class Day extends React.Component {
   render () {
     return (
       <div className="day-container" onClick={() => {}}>
-        <Event
-          hours={this.props.hours}
-          events={events}
-          setLabel={() => {}}
-        />
+        <div style={{width: '100%'}}>
+          {this.props.hours.map(hour => (
+              <Event events={events} hour={hour} />
+          ))}
+        </div>
       </div>
-
     )
   }
 }

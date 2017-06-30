@@ -54,7 +54,7 @@ export function isCenter (event, hour) {
 export const events = [
   {
     start: 6,
-    end: 12,
+    end: 11,
     name: 'Dinner',
     person: 'SomeOne',
     color: '#efefef'

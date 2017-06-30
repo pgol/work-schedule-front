@@ -24,19 +24,17 @@ const eventStyles = (event, hour) => ({
  * @param events.name - description from user of event
  * @param setLabel - event caused onClick for event
  */
-const Event = ({hours, events, setLabel}) => {
+const Event = ({hour, events}) => {
   return (
-    <div style={{width: '100%'}} onClick={setLabel}>
-      {hours.map(hour => (
-        <div className="event-container">
-          <span className="hour">
-            {createDate(hour.hour, hour.minute)}
-          </span>
-          {events.map(event => (
-            <div style={eventStyles(event, hour)} className="label">
-              {isLabeled(event, hour)}
-            </div>
-          ))}
+    //@TODO: create label only if you are on active hour for that hour
+    //@TODO: renaming / restructuring / refactoring of component
+    <div className="event-container">
+      <span className="hour">
+        {createDate(hour.hour, hour.minute)}
+      </span>
+      {events.map(event => (
+        <div style={eventStyles(event, hour)} className="label">
+          {isLabeled(event, hour)}
         </div>
       ))}
     </div>
