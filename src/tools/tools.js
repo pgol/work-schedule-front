@@ -61,9 +61,16 @@ export const events = [
   },
   {
     start: 10,
-    end: 17,
+    end: 16,
     name: 'Being awesome',
     person: 'SomeOne',
     color: 'rgb(120, 250, 240)'
+  },
+  {
+    start: 15,
+    end: 19,
+    name: 'Being crazy',
+    person: 'SomeOne',
+    color: 'rgb(250, 120, 20)'
   }
 ]

@@ -6,12 +6,12 @@ const isLabeled = (event, hour) => {
 }
 
 const isActive = (event, hour) => {
-  return event.start <= hour.hour && event.end > hour.hour ? event.color : 'transparent'
+  return event.start <= hour.hour && event.end > hour.hour
 }
 
 const eventStyles = (event, hour) => ({
   width: '100%',
-  backgroundColor: isActive(event, hour)
+  backgroundColor: isActive(event, hour) ? event.color : 'transparent',
 })
 
 /**
