@@ -1,25 +1,18 @@
+import './day.css'
 import React from 'react'
 import { connect } from 'react-redux'
-import './day.css'
-import { events, createDate } from '../../tools/tools'
-
+import Event from './day-hour'
+import { events } from '../../tools/tools'
 import { defineHours } from '../../ducks/day.duck'
 import { getHours as getHoursSelector } from '../../selectors/day.selectors'
-import Event from './day-event'
 
 class Day extends React.Component {
-  componentDidMount () {
-  }
-  /*componentDidUpdate() {
-    this.props.onDefineHours()
-  }*/
-
   render () {
     return (
-      <div className="day-container" onClick={() => {}}>
+      <div className="day-container">
         <div style={{width: '100%'}}>
-          {this.props.hours.map(hour => (
-              <Event events={events} hour={hour} />
+          {this.props.hours.map(duration => (
+              <Event events={events} duration={duration} />
           ))}
         </div>
       </div>

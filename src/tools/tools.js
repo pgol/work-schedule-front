@@ -1,3 +1,6 @@
+/**
+ * Generates hour/minute schedule data
+ */
 export function createHours (start, stop, step) {
   let hours = []
   let date = start
@@ -9,6 +12,9 @@ export function createHours (start, stop, step) {
   return hours
 }
 
+/**
+ * Produces a single step on an event schedule
+ */
 function addStep(initialHours, step) {
   let hours = Object.assign({}, initialHours)
   if (hours.minute + step >= 60) {
@@ -20,10 +26,16 @@ function addStep(initialHours, step) {
   return hours
 }
 
+/**
+ * Generates full date format
+ */
 export function createDate (hours, minutes) {
   return addDate(hours) + ':' + addDate(minutes)
 }
 
+/**
+ * Generates single hour/minute display
+ */
 function addDate (date) {
   return date < 10 ? `0${date}` : date
 }
@@ -40,7 +52,7 @@ export function generateHourSpan (event) {
 }
 
 /**
- * Calculates if hour is in center of duration of event
+ * Calculates if hour is in center of hour of event
  * @param event - event which has start and end
  * @param hour - hour span during that event
  * @returns {boolean} - flag saying if hour is in center time of event
@@ -60,7 +72,7 @@ export const events = [
     color: '#efefef'
   },
   {
-    start: 10,
+    start: 12,
     end: 16,
     name: 'Being awesome',
     person: 'SomeOne',
@@ -71,6 +83,6 @@ export const events = [
     end: 19,
     name: 'Being crazy',
     person: 'SomeOne',
-    color: 'rgb(250, 120, 20)'
+    color: 'rgb(254, 185, 33)'
   }
 ]

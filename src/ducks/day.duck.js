@@ -9,7 +9,7 @@ export const defineHours = createAction('day/hours/DEFINE')
 const initialState = Map({
   hours: Map({
     start: {hour: 7, minute: 30},
-    end: {hour: 20, minute: 0},
+    end: {hour: 19, minute: 30},
     step: 30
   }),
   events: List([])
