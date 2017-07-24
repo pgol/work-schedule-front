@@ -1,11 +1,8 @@
-import {createHours} from '../tools/tools'
-
-export const getHours = state => {
-  let hours = state.get('hours').get('hours').toJS()
-  console.log(hours)
+export const getHours = (state, createHours) => {
+  const hours = state.get('day').get('hours').toJS()
   return createHours(hours.start, hours.end, hours.step)
 }
 
-export const getInitialHours = state => {
-  return state.get('hours').get('initialHours')
+export const getEvents = state => {
+  return state.get('day').get('events').toJS()
 }

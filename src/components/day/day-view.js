@@ -2,9 +2,9 @@ import './day.css'
 import React from 'react'
 import { connect } from 'react-redux'
 import Event from './day-hour'
-import { events } from '../../tools/tools'
 import { defineHours } from '../../ducks/day.duck'
-import { getHours as getHoursSelector } from '../../selectors/day.selectors'
+import { getHours as getHoursSelector, getEvents as getEventsSelector } from '../../selectors/day.selectors'
+import {createHours} from '../../tools/date-tools'
 
 class Day extends React.Component {
   render () {
@@ -12,7 +12,8 @@ class Day extends React.Component {
       <div className="day-container">
         <div style={{width: '100%'}}>
           {this.props.hours.map(duration => (
-              <Event events={events} duration={duration} />
+              //@TODO: create ID's or convert minute/hour into milisecond timestamp for key value
+              <Event key={Math.random()} events={this.props.events} duration={duration} />
           ))}
         </div>
       </div>
@@ -21,7 +22,8 @@ class Day extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  hours: getHoursSelector(state)
+  hours: getHoursSelector(state, createHours),
+  events: getEventsSelector(state)
 })
 
 const mapDispatchToProps = dispatch => ({

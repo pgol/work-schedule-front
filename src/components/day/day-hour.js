@@ -1,21 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { isCenter, createDate } from '../../tools/tools'
-
-/**
- * Indicates if hour is in center of an event
- */
-const isLabeled = (event, hour) => {
-  return isCenter(event, hour) ? event.name : ''
-}
-
-/**
- * Indicates if event is happening during given hour
- */
-const isActive = (event, hour) => {
-  return event.start <= hour.hour && event.end > hour.hour
-}
-
+import {createDate} from '../../tools/date-tools'
+import {isCenter, isActive} from '../../tools/view-tools'
 const eventStyles = (event, hour) => ({
   width: '100%',
   backgroundColor: isActive(event, hour) ? event.color : 'transparent',
@@ -27,11 +13,13 @@ const Event = ({duration, events}) => {
       <span className="hour">
         {createDate(duration.hour, duration.minute)}
       </span>
-      {events.map(event => (
-        <div style={eventStyles(event, duration)} className="label">
-          {isLabeled(event, duration)}
-        </div>
-      ))}
+      {events.map(event => {
+        if (isActive(event, duration)) return (
+          <div key={Math.random()} style={eventStyles(event, duration)} className="label">
+            {isCenter(event, duration) ? event.name: ''}
+          </div>
+        )
+      })}
     </div>
   )
 }

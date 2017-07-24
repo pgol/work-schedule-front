@@ -7,7 +7,7 @@ import {all} from 'redux-saga/effects';
 import {reducer as formReducer} from 'redux-form';
 
 import users from '../ducks/user.duck';
-import hours from '../ducks/day.duck'
+import day from '../ducks/day.duck'
 import {watchGetUsers} from '../sagas/user.saga';
 import {createHours} from '../sagas/day.saga'
 
@@ -15,15 +15,14 @@ import {createHours} from '../sagas/day.saga'
 const sagaMiddleware = createSagaMiddleware();
 function* rootSaga() {
   yield all([
-    watchGetUsers(),
-    createHours()
+    watchGetUsers()
   ]);
 }
 
 //reducers setup
 const rootReducer = combineReducers({
   users,
-  hours,
+  day,
   form: formReducer
 });
 

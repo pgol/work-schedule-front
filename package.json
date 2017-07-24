@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "enzyme": "^2.9.1",
     "immutable": "^3.8.1",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
