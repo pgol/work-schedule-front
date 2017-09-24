@@ -1,15 +1,14 @@
 // @flow
-import axios from 'axios';
 
-function dataFetcher({baseUrl} : {baseUrl: string}) {
+function makeDataFetcher({fetch, baseUrl} : {baseUrl: string, fetch: Object}) {
   return {
-    get(url: string) {
-      return axios.get(baseUrl + url);
+    get(url: string): Promise {
+      return fetch.get(baseUrl + url);
     },
-    post(url:string, data: Object) {
-      return axios.post(baseUrl + url, data);
+    post(url:string, data: Object): Promise {
+      return fetch.post(baseUrl + url, data);
     }
   };
 }
 
-export default dataFetcher;
+export default makeDataFetcher;
