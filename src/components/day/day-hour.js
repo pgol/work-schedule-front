@@ -13,12 +13,13 @@ const Event = ({duration, events}) => {
       <span className="hour">
         {createDate(duration.hour, duration.minute)}
       </span>
-      {events.map(event => {
-        if (isActive(event, duration)) return (
-          <div key={Math.random()} style={eventStyles(event, duration)} className="label">
+      {events.map(event => (!isActive(event, duration) ? '' :
+          <div style={eventStyles(event, duration)} className="label">
             {isCenter(event, duration) ? event.name: ''}
           </div>
-        )
+        ))}
+      {events.map(event => {
+        
       })}
     </div>
   )

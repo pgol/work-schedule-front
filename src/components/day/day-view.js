@@ -1,33 +1,47 @@
 import './day.css'
 import React from 'react'
 import { connect } from 'react-redux'
-import Event from './day-hour'
-import { defineHours } from '../../ducks/day.duck'
-import { getHours as getHoursSelector, getEvents as getEventsSelector } from '../../selectors/day.selectors'
-import {createHours} from '../../tools/date-tools'
+import { addEvent } from '../../ducks/events.duck'
+import { getEvents as getEventsSelector } from '../../selectors/events.selectors'
+import DayForm from './day-form'
+import BigCalendar from 'react-big-calendar'
+import moment from 'moment'
+import 'moment/locale/pl'
+
+moment.locale('pl')
+BigCalendar.setLocalizer(
+  BigCalendar.momentLocalizer(moment)
+)
 
 class Day extends React.Component {
   render () {
     return (
       <div className="day-container">
-        <div style={{width: '100%'}}>
-          {this.props.hours.map(duration => (
-              //@TODO: create ID's or convert minute/hour into milisecond timestamp for key value
-              <Event key={Math.random()} events={this.props.events} duration={duration} />
-          ))}
+        <div className="rbc-container">
+          <BigCalendar 
+            events={this.props.events.map(mapMomentToDate)}
+          />
         </div>
+        <DayForm addEvent={this.props.addEvent} handleSubmit={() => {}} />
       </div>
     )
   }
 }
 
+const mapMomentToDate = (moment) => {
+  return {
+    start: moment.start.toDate(),
+    end: moment.end.toDate(),
+    title: moment.title
+  }
+}
+
 const mapStateToProps = state => ({
-  hours: getHoursSelector(state, createHours),
   events: getEventsSelector(state)
 })
 
 const mapDispatchToProps = dispatch => ({
-  onDefineHours: (hours) => dispatch(defineHours(hours))
+  addEvent: (event) => dispatch(addEvent(event))
 })
 
 export default connect(

@@ -1,9 +1,9 @@
 .day-container {
-    display: flex;
-    background-color: aliceblue;
     padding: 5px 5px;
 }
-
+.rbc-container {
+    height: 700px;
+}
 .event-container {
     display: flex;
     justify-content: space-between;
@@ -11,7 +11,8 @@
 }
 
 .label {
-
+    text-align: right;
+    padding-right: 20%;
 }
 .hour {
     padding: 0 10px;
