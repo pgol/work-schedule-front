@@ -1,8 +1,9 @@
 .day-container {
     padding: 5px 5px;
+    height: 600px;
 }
 .rbc-container {
-    height: 700px;
+    height: 500px;
 }
 .event-container {
     display: flex;

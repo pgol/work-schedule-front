@@ -6,9 +6,7 @@ import { getEvents as getEventsSelector } from '../../selectors/events.selectors
 import DayForm from './day-form'
 import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
-import 'moment/locale/pl'
 
-moment.locale('pl')
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 )
@@ -18,11 +16,12 @@ class Day extends React.Component {
     return (
       <div className="day-container">
         <div className="rbc-container">
-          <BigCalendar 
+          <DayForm addEvent={this.props.addEvent} handleSubmit={() => {}} />
+          <BigCalendar
+            //view={activeCalendarView} //provide syncing between redux stored view data
             events={this.props.events.map(mapMomentToDate)}
           />
         </div>
-        <DayForm addEvent={this.props.addEvent} handleSubmit={() => {}} />
       </div>
     )
   }

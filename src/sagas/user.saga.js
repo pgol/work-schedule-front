@@ -18,5 +18,5 @@ export function* getUsers() {
 }
 
 export function* watchGetUsers() {
-  yield takeEvery(loadUsers().type, getUsers);
+  //yield takeEvery(loadUsers().type, getUsers);
 }
