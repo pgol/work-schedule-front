@@ -1,8 +1,8 @@
 import './day.css'
 import React from 'react'
 import { connect } from 'react-redux'
-import { addEvent } from '../../ducks/events.duck'
-import { getEvents as getEventsSelector } from '../../selectors/events.selectors'
+import { addEvent, setView } from '../../ducks/events.duck'
+import { getView as getEventSelector, getEvents as getEventsSelector } from '../../selectors/events.selectors'
 import DayForm from './day-form'
 import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
@@ -11,13 +11,14 @@ BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 )
 
-class Day extends React.Component {
+export class Day extends React.Component {
   render () {
     return (
       <div className="day-container">
         <div className="rbc-container">
           <DayForm addEvent={this.props.addEvent} handleSubmit={() => {}} />
           <BigCalendar
+            onView={(view) => this.props.setView(view)}
             //view={activeCalendarView} //provide syncing between redux stored view data
             events={this.props.events.map(mapMomentToDate)}
           />
@@ -36,11 +37,13 @@ const mapMomentToDate = (moment) => {
 }
 
 const mapStateToProps = state => ({
-  events: getEventsSelector(state)
+  events: getEventsSelector(state),
+  view: getEventSelector(state)
 })
 
 const mapDispatchToProps = dispatch => ({
-  addEvent: (event) => dispatch(addEvent(event))
+  addEvent: (event) => dispatch(addEvent(event)),
+  setView: (view) => dispatch(setView(view))
 })
 
 export default connect(

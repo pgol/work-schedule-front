@@ -31,7 +31,7 @@ class DayForm extends Component {
             <DatePicker 
               placeholder="Start"
               showTime={{ defaultValue: moment('00:00:00', 'HH:mm:ss') }} 
-              format="YYYY-MM-DD HH:mm:ss" 
+              format="HH:mm:ss" 
               onChange={this.handleStartChange}
             />
             <DatePicker

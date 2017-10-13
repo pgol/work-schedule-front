@@ -6,18 +6,26 @@ import 'moment/locale/pl'
 //set moment.js locale
 moment.locale('pl')
 //action creators
-export const addEvent = createAction('events/ADD')
+export const addEvent = createAction('events/schedule/ADD')
+export const setView = createAction('events/view/SET')
 //reducers
-const initialState = fromJS(
-  [
-    { title: 'Event', start: moment(new Date()), end: moment(new Date()) }
-  ]
-)
+const initialState = fromJS({
+  schedule: [
+    { title: 'Event', start: moment(new Date()), end: moment(new Date()).add(4, 'hour') }
+  ],
+  view: fromJS({
+    now: 'month'
+  })
+})
 
 export default handleActions({
   [addEvent().type]: (state, action) => {
     return state
-      .set('events', fromJS([...state.get('events'), action.payload]))
+      .set('schedule', fromJS([...state.get('schedule'), action.payload]))
+  },
+  [setView().type]: (state, action) => {
+    return state
+      .set('view', fromJS({...state, now: action.payload}))
   }
 
 }, initialState)
