@@ -13,9 +13,8 @@ class UsersView extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{margin: '15px 0'}}>
         <UsersForm onSubmit={this.props.onSubmitForm}/>
-        <UsersList users={this.props.users.toJS()}/>
       </div>
     )
   }

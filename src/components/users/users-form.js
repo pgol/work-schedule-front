@@ -1,24 +1,33 @@
-import React from 'react';
-import {Field, reduxForm} from 'redux-form/immutable';
+import React, { Component } from 'react'
+import {Field, reduxForm} from 'redux-form/immutable'
+import { Input, Button } from 'antd'
 
-let UsersForm = props => {
-  return (
-    <form onSubmit={props.handleSubmit}>
-      <div>
-        <label htmlFor="username">Username</label>
-        <Field name="username" component="input" type="text"/>
+class UserForm extends Component {
+  onUsernameChange = (event) => {
+    console.log(event.target.value)
+  }
+
+  onPasswordChange = (event) => {
+    console.log(event.target.value)
+  }
+
+  render() {
+    return (
+      <div className="user-log-form">
+        <Input 
+          placeholder="Login"
+          onChange={this.onUsernameChange}
+        />
+        <Input 
+          placeholder="Password"
+          type="password"
+          onChange={this.onPasswordChange}
+        />
+        <Button>Submit</Button>
       </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <Field name="email" component="input" type="text"/>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-  )
+    )
+  }
+  
 };
 
-UsersForm = reduxForm({
-  form: 'contact'
-})(UsersForm);
-
-export default UsersForm;
+export default UserForm;

@@ -18,12 +18,13 @@ BigCalendar.setLocalizer(
 
 export class Calendar extends React.Component {
   render () {
-    console.log(this.props)
     const { Sider, Content } = Layout;
     return (
       <Layout>
         <Sider>
-          <UsersView />
+          <UsersView 
+
+          />
           <EventAddForm 
             view={this.props.view} 
             addEvent={this.props.addEvent} 

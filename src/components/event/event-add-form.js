@@ -52,10 +52,9 @@ class EventAddForm extends Component {
 
   render () {
     return (
-        <div className="add-event-form" style={{padding: 20}}>
+        <div className="add-event-form" style={{}}>
           {this.mapViewToForm(this.props.view.now, this.handleStartChange, this.handleEndChange)}
           <Input
-            style={{margin: 5}}
             value={this.state.title}
             onChange={this.handleChange}
             placeholder="Type name of event"
