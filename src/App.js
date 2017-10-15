@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import './App.css'
-import UsersView from './components/users/users-view'
-import Day from './components/day/day-view'
+import Calendar from './components/calendar/calendar-view'
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { Layout } from 'antd'
 
 //global css imports
 import 'react-big-calendar/lib/css/react-big-calendar.css'
@@ -11,13 +11,19 @@ import 'antd/dist/antd.css'
 
 
 class App extends Component {
+  
   render() {
+    const { Header, Footer } = Layout
+ 
     return (
       <Provider store={store}>
-        <div className="App">
-          <Day />
-          <UsersView />
-        </div>
+        <Layout>
+          <Header>
+            <h1>Golendar</h1>
+          </Header>
+            <Calendar /> 
+          <Footer>Footer</Footer>
+        </Layout>
       </Provider>
     )
   }

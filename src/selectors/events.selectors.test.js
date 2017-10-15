@@ -34,12 +34,14 @@ describe('SELECTORS::Events', () => {
       const state = fromJS({
         events: {
           view: {
-            now: 'month'
+            now: 'month',
+            date: new Date()
           }
         }
       })
       const selected = getView(state)
       expect(selected.now).toBe('month')
+      expect(selected.date.toDate !== 'undefined').toBe(true) // provide better validation
     })
   })
 })

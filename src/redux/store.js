@@ -29,7 +29,7 @@ const logger = createLogger({
   stateTransformer: (state) => Iterable.isIterable(state) ? state.toJSON() : state, //for Immutable.js
 });
 
-const middlewares = [sagaMiddleware];
+const middlewares = [sagaMiddleware, logger];
 
 
 export default createStore(
