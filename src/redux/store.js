@@ -25,15 +25,12 @@ const rootReducer = combineReducers({
   form: formReducer
 });
 
-const logger = createLogger({
-  stateTransformer: (state) => Iterable.isIterable(state) ? state.toJSON() : state, //for Immutable.js
-});
-
-const middlewares = [sagaMiddleware, logger];
+const middlewares = [sagaMiddleware];
 
 
 export default createStore(
   rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(...middlewares)
 );
 

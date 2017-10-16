@@ -1,7 +1,6 @@
 // @flow
-import axios from 'axios';
 
-function dataFetcher({baseUrl} : {baseUrl: string}) {
+function makeDataFetcher({fetch, baseUrl} : {baseUrl: string, fetch: Object}) {
   return {
     get(url: string) {
       return {
@@ -16,4 +15,4 @@ function dataFetcher({baseUrl} : {baseUrl: string}) {
   };
 }
 
-export default dataFetcher;
+export default makeDataFetcher;
