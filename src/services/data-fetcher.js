@@ -2,11 +2,15 @@
 
 function makeDataFetcher({fetch, baseUrl} : {baseUrl: string, fetch: Object}) {
   return {
-    get(url: string): Promise {
-      return fetch.get(baseUrl + url);
-    },
-    post(url:string, data: Object): Promise {
-      return fetch.post(baseUrl + url, data);
+    get(url: string) {
+      return {
+        username: 'Dizlu',
+        sex: 'man',
+        avatar: 'someAvatar.jpg',
+        registered: new Date(),
+        events: [{}]
+      }
+      //return axios.get(baseUrl + url);
     }
   };
 }

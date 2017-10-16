@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
 
-import store from './redux/store';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
+//Set language to english for whole ant.d
+import { LocaleProvider } from 'antd';
+import enUS from 'antd/lib/locale-provider/en_US';
+
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <LocaleProvider locale={enUS}><App /></LocaleProvider>
   , document.getElementById('root'));
 registerServiceWorker();

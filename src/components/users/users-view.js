@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 
 import {loadUsers, submitUser} from '../ducks/user.duck';
 import {getUsers as getUsersSelector} from '../selectors/user.selectors';
-import UsersList from './users-list';
 import UsersForm from './users-form';
 
 class UsersView extends Component {
@@ -15,9 +14,8 @@ class UsersView extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{margin: '15px 0'}}>
         <UsersForm onSubmit={this.props.onSubmitForm}/>
-        <UsersList users={this.props.users.toJS()}/>
       </div>
     )
   }

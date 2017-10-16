@@ -3,25 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^2.13.5",
     "axios": "^0.16.2",
-    "immutable": "^3.8.1",
-    "lodash": "^4.17.4",
-    "prop-types": "^15.5.10",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-immutable-proptypes": "^2.1.0",
-    "react-redux": "^5.0.5",
-    "react-router": "^4.1.1",
-    "react-router-dom": "^4.1.1",
-    "redux": "^3.6.0",
-    "redux-actions": "^2.0.3",
+    "immutable": "^3.8.2",
+    "jest": "^20.1.0-alpha.3",
+    "moment": "@2.18.1",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-big-calendar": "^0.16.1",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
     "redux-form": "^6.8.0",
     "redux-immutable": "^4.0.0",
-    "redux-saga": "^0.15.3"
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.15.6"
   },
   "devDependencies": {
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.1",
     "flow-bin": "^0.48.0",
-    "react-scripts": "1.0.7"
+    "react-scripts": "1.0.7",
+    "react-test-renderer": "16.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,28 +1,34 @@
-import React, {Component} from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+import React, { Component } from 'react'
+import './App.css'
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { Layout } from 'antd'
 
-import './App.css';
-import UsersView from  './components/users-view';
+import Calendar from './components/calendar/calendar-view'
+import Profile from './components/profile/profile-view'
+
+//global css imports
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import 'antd/dist/antd.css'
+
 
 class App extends Component {
+  
   render() {
+    const { Header, Footer } = Layout
+ 
     return (
-        <Router>
-          <div className="App">
-            <ul>
-              <li>
-                <Link to="/">Users</Link>
-              </li>
-            </ul>
-            <Route path="/" component={UsersView} />
-          </div>
-        </Router>
-    );
+      <Provider store={store}>
+        <Layout>
+          <Header>
+            <Profile />
+          </Header>
+            <Calendar /> 
+          <Footer>Footer</Footer>
+        </Layout>
+      </Provider>
+    )
   }
 }
 
-export default App;
+export default App
