@@ -8,13 +8,10 @@ import moment from 'moment'
 import './event.css'
 
 class EventAddForm extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      start: moment('12:05:00', 'HH:mm:ss'),
-      end: moment('15:06:00', 'HH:mm:ss'),
-      title: ''
-    }
+  state = {
+    start: moment('12:05:00', 'HH:mm:ss'),
+    end: moment('15:06:00', 'HH:mm:ss'),
+    title: ''
   }
 
   handleStartChange = (start) => {

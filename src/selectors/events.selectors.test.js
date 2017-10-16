@@ -41,7 +41,7 @@ describe('SELECTORS::Events', () => {
       })
       const selected = getView(state)
       expect(selected.now).toBe('month')
-      expect(selected.date.toDate !== 'undefined').toBe(true) // provide better validation
+      //expect(selected.date.toDate !== 'undefined').toBe(true) // provide better validation
     })
   })
 })
