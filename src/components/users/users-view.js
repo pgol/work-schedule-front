@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import {connect} from 'react-redux';
 
-import {loadUsers, submitUser} from '../ducks/user.duck';
-import {getUsers as getUsersSelector} from '../selectors/user.selectors';
+import {loadUsers, submitUser} from '../../ducks/user.duck';
+import {getUsers as getUsersSelector} from '../../selectors/user.selectors';
 import UsersForm from './users-form';
 
 class UsersView extends Component {
