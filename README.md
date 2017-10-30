@@ -1,3 +1,7 @@
+Install yarn
 
-Users TODO:
- - testing setup, unit and e2e
+```npm i -g yarn```
+
+to run:
+
+```yarn start``

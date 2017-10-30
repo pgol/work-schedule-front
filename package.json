@@ -2,6 +2,9 @@
   "name": "react-playground",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "8.4.x"
+  },
   "dependencies": {
     "antd": "^2.13.5",
     "axios": "^0.16.2",
@@ -30,7 +33,7 @@
     "react-test-renderer": "16.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "yarn && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
