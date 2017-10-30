@@ -1,71 +1,61 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import BigCalendar from 'react-big-calendar'
-import moment from 'moment'
-import { Layout } from 'antd'
-import { addEvent, setView, setNavigation } from '../../ducks/events.duck'
-import { getView as getEventSelector,
-         getEvents as getEventsSelector,
-        } from '../../selectors/events.selectors'
-import EventAddForm from '../event/event-add-form'
-import UsersView from '../users/users-view'
+import React from "react";
+import { connect } from "react-redux";
+import BigCalendar from "react-big-calendar";
+import HTML5Backend from "react-dnd-html5-backend";
+import { DragDropContext } from "react-dnd";
+import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
+import moment from "moment";
+import { Layout } from "antd";
+import { setView, setNavigation, setEvent } from "../../ducks/events.duck";
+import { getEvents as getEventsSelector } from "../../selectors/events.selectors";
 
-import './calendar.css'
+import "./calendar.css";
+import "react-big-calendar/lib/addons/dragAndDrop/styles.less";
 
-BigCalendar.setLocalizer(
-  BigCalendar.momentLocalizer(moment)
-)
+BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
+
+const DragAndDropCalendar = withDragAndDrop(BigCalendar);
 
 export class Calendar extends React.Component {
-  render () {
-    const { Sider, Content } = Layout;
+  render() {
+    const { setView, setNavigation, setEvent, events } = this.props;
+    const { Content } = Layout;
     return (
-      <Layout>
-        <Sider>
-          <UsersView 
-
-          />
-          <EventAddForm 
-            view={this.props.view} 
-            addEvent={this.props.addEvent} 
-          />
-        </Sider>
-        <Content>
-          <div className="calendar-container">
-            <div className="rbc-container">
-              <BigCalendar
-                onNavigate={(navigation) => this.props.setNavigation(navigation)}
-                onView={(view) => this.props.setView(view)}
-                events={this.props.events.map(mapMomentToDate)}
-              />
-            </div>
+      <Content>
+        <div className="calendar-container">
+          <div className="rbc-container">
+            <DragAndDropCalendar
+              selectable
+              onEventDrop={setEvent}
+              onNavigate={setNavigation}
+              onView={setView}
+              events={events.map(mapMomentToDate)}
+            />
+          </div>
         </div>
-        </Content>
-    </Layout>
-    )
+      </Content>
+    );
   }
 }
 
-const mapMomentToDate = (moment) => {
+const mapMomentToDate = event => {
   return {
-    start: moment.start.toDate(),
-    end: moment.end.toDate(),
-    title: moment.title
-  }
-}
+    ...event,
+    start: event.start.toDate(),
+    end: event.end.toDate()
+  };
+};
 
 const mapStateToProps = state => ({
-  events: getEventsSelector(state),
-  view: getEventSelector(state)
-})
+  events: getEventsSelector(state)
+});
 
 const mapDispatchToProps = dispatch => ({
-  addEvent: (event) => dispatch(addEvent(event)),
-  setView: (view) => dispatch(setView(view)),
-  setNavigation: (navigation) => dispatch(setNavigation(navigation))
-})
+  setView: view => dispatch(setView(view)),
+  setNavigation: navigation => dispatch(setNavigation(navigation)),
+  setEvent: event => dispatch(setEvent(event))
+});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Calendar)
+Calendar = DragDropContext(HTML5Backend)(Calendar);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
