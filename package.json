@@ -1,5 +1,5 @@
 {
-  "name": "react-playground",
+  "name": "work-schedule-front",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -8,6 +8,7 @@
   "dependencies": {
     "antd": "^2.13.5",
     "axios": "^0.16.2",
+    "eslint": "^4.9.0",
     "immutable": "^3.8.2",
     "jest": "^20.1.0-alpha.3",
     "moment": "@2.18.1",
@@ -15,6 +16,7 @@
     "react": "^16.0.0",
     "react-big-calendar": "^0.16.1",
     "react-dom": "^16.0.0",
+    "react-immutable-proptypes": "^2.1.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
@@ -26,7 +28,18 @@
   "devDependencies": {
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.1",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-config-react-app": "^2.0.1",
+    "eslint-plugin-flowtype": "^2.39.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-watch": "^3.1.3",
     "flow-bin": "^0.48.0",
+    "prettier": "^1.7.4",
+    "prettier-eslint": "^8.2.1",
+    "prettier-eslint-cli": "^4.4.0",
     "react-scripts": "1.0.7",
     "react-test-renderer": "16.0.0"
   },
@@ -35,6 +48,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "format": "prettier-eslint --write \"./src/**/*.js\"",
+    "format:w": "npm run format -- -w",
     "flow": "flow"
   }
 }
