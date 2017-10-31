@@ -11,7 +11,7 @@
     "eslint": "^4.9.0",
     "immutable": "^3.8.2",
     "jest": "^20.1.0-alpha.3",
-    "moment": "@2.18.1",
+    "moment": "^2.18.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-big-calendar": "^0.16.1",
@@ -42,7 +42,7 @@
     "prettier": "^1.7.4",
     "prettier-eslint": "^8.2.1",
     "prettier-eslint-cli": "^4.4.0",
-    "react-scripts": "1.0.7",
+    "react-scripts": "^1.0.16",
     "react-test-renderer": "16.0.0"
   },
   "scripts": {
