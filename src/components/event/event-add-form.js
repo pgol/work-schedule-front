@@ -1,67 +1,67 @@
 import React, { Component } from 'react'
-import {Field, reduxForm} from 'redux-form/immutable'
-import { Input, Button } from 'antd'
-import DatePickerMonth from './date-picker/date-picker-month'
-import DatePickerDay from './date-picker/date-picker-day'
-import moment from 'moment'
-
+import { connect } from 'react-redux'
+import { Input, Button, Form } from 'antd'
+import { getEvent as getEventSelector, getView as getViewSelector} from './../../selectors/events.selectors'
+import { setStartEvent, setEndEvent, setTitleEvent, addEvent } from './../../ducks/events.duck'
+import DatePicker from './date-picker/date-picker'
 import './event.css'
 
-class EventAddForm extends Component {
-  state = {
-    start: moment('12:05:00', 'HH:mm:ss'),
-    end: moment('15:06:00', 'HH:mm:ss'),
-    title: ''
-  }
+const FormItem = Form.Item
 
+class EventAddForm extends Component {
   handleStartChange = (start) => {
-    this.setState({start})
+    this.props.setStartEvent(start)
   }
   handleEndChange = (end) => {
-    this.setState({end})
+    this.props.setEndEvent(end)
   }
 
-  handleChange = (event) => {
-    this.setState({title: event.target.value})
+  handleTitleChange = (event) => {
+    this.props.setTitleEvent(event.target.value)
   }
 
-  /**
-   * Maps type of view in calendar to look of form
-   * @param {String} view - current view of React Big calendar component
-   */
-  mapViewToForm = (view, handleStartChange, handleEndChange) => {
-    if (view === 'day') {
-      return (
-        <DatePickerDay
-          //get date basing on this.props.view.date and change only hours/minutes/seconds
-          handleStartChange={handleStartChange}
-          handleEndChange={handleEndChange}
-        />
-      )
-    }
-    return (
-      <DatePickerMonth 
-        handleStartChange={handleStartChange}
-        handleEndChange={handleEndChange}
-      />
-    )
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.addEvent()
   }
 
   render () {
     return (
-        <div className="add-event-form" style={{}}>
-          {this.mapViewToForm(this.props.view.now, this.handleStartChange, this.handleEndChange)}
-          <Input
-            value={this.state.title}
-            onChange={this.handleChange}
-            placeholder="Type name of event"
-          />
-          <div className="submit">
-            <Button onClick={() => this.props.addEvent({...this.state})}>Add event</Button>
-          </div>
-        </div>
+        <Form layout="inline" onSubmit={this.handleSubmit}>
+          <FormItem>
+            <DatePicker view={this.props.view}
+              handleStartChange={this.handleStartChange}
+              handleEndChange={this.handleEndChange}
+            />
+          </FormItem>
+          <FormItem>
+            <Input
+              value={this.props.event.title}
+              onChange={this.handleTitleChange}
+              placeholder="Type name of event"
+            />
+          </FormItem>
+          <FormItem>
+            <Button htmlType="submit">Add event</Button>
+          </FormItem>
+        </Form>
     )
   }
 }
 
-export default EventAddForm;
+const mapDispatchToProps = (dispatch) => ({
+  addEvent: () => dispatch(addEvent()),
+  setStartEvent: (start) => dispatch(setStartEvent(start)),
+  setEndEvent: (end) => dispatch(setEndEvent(end)),
+  setTitleEvent: (title) => dispatch(setTitleEvent(title))
+})
+
+const mapStateToProps = (state) => ({
+  event: getEventSelector(state),
+  view: getViewSelector(state)
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EventAddForm);
