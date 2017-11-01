@@ -7,13 +7,13 @@ describe('SELECTORS::Events', () => {
     it('fetches state with one event', () => {
       const state = fromJS({
         events: {
-          schedule: [{ title: 'Event', start: moment(new Date()), end: moment(new Date()) }]
+          schedule: [{ name: 'Event', start: moment(new Date()), end: moment(new Date()) }]
         }
       })
     
       const selected = getEvents(state)
       expect(selected.length).toBe(1)
-      expect(selected[0].title).toBe('Event')
+      expect(selected[0].name).toBe('Event')
       expect(selected[0].start.toDate()).toBeDefined()
       expect(selected[0].end.toDate()).toBeDefined()
     })

@@ -9,6 +9,6 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('Components::day-view', () => {
   it('component renders without crashing', () => {
-    const calendar = shallow(<Calendar  events={[{start: moment(), end: moment(), title: 'title'}]}/>)
+    const calendar = shallow(<Calendar  events={[{start: moment(), end: moment(), name: 'name'}]}/>)
   })
 })
