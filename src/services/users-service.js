@@ -1,6 +1,6 @@
 // @flow
 
-function makeUsersService({dataFetcher}) {
+function makeUsersService({dataFetcher} : {dataFetcher: Object}) {
   const unwrap = res => res.data;
   return {
     getUsers() {
