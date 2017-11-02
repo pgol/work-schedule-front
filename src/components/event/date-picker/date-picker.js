@@ -1,5 +1,6 @@
 import React from 'react'
 import DatePickerMonth from './date-picker-month'
+import moment from 'moment'
 
 /**
   * Maps type of view in calendar to look of form
@@ -7,7 +8,7 @@ import DatePickerMonth from './date-picker-month'
   * @param {Function} handleEndChange - handles choosing end date of event
   * @param {String} view - current view of React Big calendar component
 */
-const DatePicker = ({ handleStartChange, handleEndChange, view}) => (
+const DatePicker = ({ handleStartChange, handleEndChange, view = {date: moment()}}) => (
   <DatePickerMonth
     defaultValue={view.date}
     handleStartChange={handleStartChange}
