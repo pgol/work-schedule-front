@@ -7,7 +7,7 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() })
 
-describe('Components::day-view', () => {
+describe('Components::Calendar', () => {
   it('component renders without crashing', () => {
     const props = {
       events: [{ start: moment(), end: moment(), name: 'name' }]

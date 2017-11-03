@@ -7,7 +7,7 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('Components::date-picker-month', () => {
+describe('Components::DatePickerMonth', () => {
   it('component renders without crashing', () => {
     const component = shallow(<DatePickerMonth />)
   })

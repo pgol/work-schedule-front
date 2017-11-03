@@ -8,7 +8,7 @@ import './event.css'
 
 const FormItem = Form.Item
 
-class EventAddForm extends Component {
+export class EventAddForm extends Component {
   handleStartChange = (start) => {
     this.props.setStartEvent(start)
   }
