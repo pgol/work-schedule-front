@@ -4,4 +4,4 @@ Install yarn
 
 to run:
 
-```yarn start``
+```yarn start```
