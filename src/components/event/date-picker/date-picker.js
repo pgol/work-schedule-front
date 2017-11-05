@@ -1,6 +1,7 @@
 import React from 'react'
-import DatePickerMonth from './date-picker-month'
+import PropTypes from 'prop-types'
 import moment from 'moment'
+import DatePickerMonth from './date-picker-month'
 
 /**
   * Maps type of view in calendar to look of form
@@ -15,5 +16,11 @@ const DatePicker = ({ handleStartChange, handleEndChange, view = {date: moment()
     handleEndChange={handleEndChange}
   />
 )
+
+DatePicker.PropTypes = {
+  handleStartChange: PropTypes.func,
+  handleEndChange: PropTypes.func,
+  view: PropTypes.object
+}
 
 export default DatePicker
