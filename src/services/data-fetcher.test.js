@@ -17,10 +17,9 @@ describe('dataFetcher', () => {
       fetch
     });
     fetcher.get(resource);
-
     expect(fetch.get).toBeCalledWith(baseUrl + resource);
-    fetcher.post(resource, {});
 
+    fetcher.post(resource, {});
     expect(fetch.post).toBeCalledWith(baseUrl + resource, {});
   });
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { DatePicker } from 'antd'
 import moment from 'moment'
 
@@ -20,5 +21,10 @@ const DatePickerMonth = ({handleStartChange, handleEndChange}) => (
     />
   </div>
 )
+
+DatePickerMonth.PropTypes = {
+  handleStartChange: PropTypes.func,
+  handleEndChange: PropTypes.func
+}
 
 export default DatePickerMonth

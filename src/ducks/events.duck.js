@@ -9,13 +9,13 @@ export const setView = createAction('events/view/SET')
 export const setNavigation = createAction('events/navigation/SET')
 export const setStartEvent = createAction('events/event/date-start/SET')
 export const setEndEvent = createAction('events/event/date-end/SET')
-export const setTitleEvent = createAction('events/event/title/SET')
+export const setNameEvent = createAction('events/event/name/SET')
 export const setEvent = createAction('events/event/all/SET')
 
 //reducers
 const initialState = fromJS({
   schedule: [
-    { title: 'Some event', start: moment(), end: moment().add(1, 'hour'), id: 234234 }
+    { name: 'Some event', start: moment(), end: moment().add(1, 'hour'), id: 234234 }
   ],
   view: {
     date: moment(),
@@ -24,7 +24,7 @@ const initialState = fromJS({
   event: {
     start: moment(),
     end: moment(),
-    title: '',
+    name: '',
     id: 234234
   }
 })
@@ -32,9 +32,6 @@ const initialState = fromJS({
 export default handleActions({
   [addEvent().type]: (state) => {
     const newArray = fromJS([...state.get('schedule').toJS(), state.get('event').toJS()])
-    axios.post('http://localhost:3002/api/v1/events', state.get('event'))
-      .then(res => console.log(res))
-      .catch(e => console.warn(e))
     return state
       .set('schedule', newArray)
   },
@@ -46,9 +43,9 @@ export default handleActions({
     return state
       .setIn(['view', 'date'], action.payload)
   },
-  [setTitleEvent().type]: (state, action) => {
+  [setNameEvent().type]: (state, action) => {
     return state
-      .setIn(['event', 'title'], action.payload)
+      .setIn(['event', 'name'], action.payload)
   },
   [setStartEvent().type]: (state, action) => {
     return state
@@ -65,7 +62,7 @@ export default handleActions({
       .map(event => {
         if (action.payload.event.id === event.id) {
           event = {
-            title: action.payload.event.title,
+            name: action.payload.event.name,
             start: moment(action.payload.start),
             end: moment(action.payload.end)
           }

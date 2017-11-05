@@ -1,25 +1,26 @@
-import React from "react";
-import { connect } from "react-redux";
-import BigCalendar from "react-big-calendar";
-import HTML5Backend from "react-dnd-html5-backend";
-import { DragDropContext } from "react-dnd";
-import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
-import moment from "moment";
-import { Layout } from "antd";
-import { setView, setNavigation, setEvent } from "../../ducks/events.duck";
-import { getEvents as getEventsSelector } from "../../selectors/events.selectors";
+import React from "react"
+import { connect } from "react-redux"
+import PropTypes from 'prop-types'
+import BigCalendar from "react-big-calendar"
+import HTML5Backend from "react-dnd-html5-backend"
+import { DragDropContext } from "react-dnd"
+import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop"
+import moment from "moment"
+import { Layout } from "antd"
+import { setView, setNavigation, setEvent } from "../../ducks/events.duck"
+import { getEvents as getEventsSelector } from "../../selectors/events.selectors"
 
-import "./calendar.css";
-import "react-big-calendar/lib/addons/dragAndDrop/styles.less";
+import "./calendar.css"
+import "react-big-calendar/lib/addons/dragAndDrop/styles.less"
 
-BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
+BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment))
 
-const DragAndDropCalendar = withDragAndDrop(BigCalendar);
+const DragAndDropCalendar = withDragAndDrop(BigCalendar)
 
 export class Calendar extends React.Component {
   render() {
-    const { setView, setNavigation, setEvent, events } = this.props;
-    const { Content } = Layout;
+    const { setView, setNavigation, setEvent, events } = this.props
+    const { Content } = Layout
     return (
       <Content>
         <div className="calendar-container">
@@ -34,28 +35,33 @@ export class Calendar extends React.Component {
           </div>
         </div>
       </Content>
-    );
+    )
   }
 }
 
-const mapMomentToDate = event => {
-  return {
-    ...event,
-    start: event.start.toDate(),
-    end: event.end.toDate()
-  };
-};
+const mapMomentToDate = event => ({
+  ...event,
+  start: event.start.toDate(),
+  end: event.end.toDate()
+})
 
 const mapStateToProps = state => ({
   events: getEventsSelector(state)
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   setView: view => dispatch(setView(view)),
   setNavigation: navigation => dispatch(setNavigation(navigation)),
   setEvent: event => dispatch(setEvent(event))
-});
+})
 
-Calendar = DragDropContext(HTML5Backend)(Calendar);
+Calendar.PropTypes = {
+  setView: PropTypes.func,
+  setNavigation: PropTypes.func,
+  setEvent: PropTypes.func,
+  events: PropTypes.object
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
+Calendar = DragDropContext(HTML5Backend)(Calendar)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar)

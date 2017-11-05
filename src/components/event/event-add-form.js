@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Input, Button, Form } from 'antd'
 import { getEvent as getEventSelector, getView as getViewSelector} from './../../selectors/events.selectors'
-import { setStartEvent, setEndEvent, setTitleEvent, addEvent } from './../../ducks/events.duck'
+import { setStartEvent, setEndEvent, setNameEvent, addEvent } from './../../ducks/events.duck'
 import DatePicker from './date-picker/date-picker'
 import './event.css'
 
 const FormItem = Form.Item
 
-class EventAddForm extends Component {
+export class EventAddForm extends Component {
   handleStartChange = (start) => {
     this.props.setStartEvent(start)
   }
@@ -17,7 +17,7 @@ class EventAddForm extends Component {
   }
 
   handleTitleChange = (event) => {
-    this.props.setTitleEvent(event.target.value)
+    this.props.setNameEvent(event.target.value)
   }
 
   handleSubmit = (e) => {
@@ -36,7 +36,7 @@ class EventAddForm extends Component {
           </FormItem>
           <FormItem>
             <Input
-              value={this.props.event.title}
+              value={this.props.event.name}
               onChange={this.handleTitleChange}
               placeholder="Type name of event"
             />
@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch) => ({
   addEvent: () => dispatch(addEvent()),
   setStartEvent: (start) => dispatch(setStartEvent(start)),
   setEndEvent: (end) => dispatch(setEndEvent(end)),
-  setTitleEvent: (title) => dispatch(setTitleEvent(title))
+  setNameEvent: (name) => dispatch(setNameEvent(name))
 })
 
 const mapStateToProps = (state) => ({
