@@ -6,7 +6,7 @@ import { Layout } from 'antd';
 
 import Calendar from './components/calendar/calendar-view';
 import Profile from './components/profile/profile-view';
-import UsersView from './components/users/users-form';
+import UsersView from './components/users/users-view';
 import EventAddForm from './components/event/event-add-form';
 
 //global css imports
