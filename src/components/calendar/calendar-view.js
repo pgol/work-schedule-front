@@ -1,6 +1,6 @@
+// @flow
 import React from "react"
 import { connect } from "react-redux"
-import PropTypes from 'prop-types'
 import BigCalendar from "react-big-calendar"
 import HTML5Backend from "react-dnd-html5-backend"
 import { DragDropContext } from "react-dnd"
@@ -17,7 +17,14 @@ BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment))
 
 const DragAndDropCalendar = withDragAndDrop(BigCalendar)
 
-export class Calendar extends React.Component {
+type Props = {
+  setView: Function,
+  setNavigation: Function,
+  setEvent: Function,
+  events: Object
+}
+
+export class Calendar extends React.Component<Props> {
   render() {
     const { setView, setNavigation, setEvent, events } = this.props
     const { Content } = Layout
@@ -54,13 +61,6 @@ const mapDispatchToProps = dispatch => ({
   setNavigation: navigation => dispatch(setNavigation(navigation)),
   setEvent: event => dispatch(setEvent(event))
 })
-
-Calendar.PropTypes = {
-  setView: PropTypes.func,
-  setNavigation: PropTypes.func,
-  setEvent: PropTypes.func,
-  events: PropTypes.object
-}
 
 Calendar = DragDropContext(HTML5Backend)(Calendar)
 

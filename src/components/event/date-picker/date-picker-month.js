@@ -1,11 +1,16 @@
+// @flow
 import React from 'react'
-import PropTypes from 'prop-types'
 import { DatePicker } from 'antd'
 import moment from 'moment'
 
 const monthFormat = 'YYYY-MM-DD HH:mm:ss'
 
-const DatePickerMonth = ({handleStartChange, handleEndChange}) => (
+type Props = {
+  handleStartChange: Function,
+  handleEndChange: Function
+}
+
+const DatePickerMonth = ({handleStartChange, handleEndChange}: Props) => (
   <div className="date-picker-month" style={{}}>
     <DatePicker
       style={{margin: 5}}
@@ -21,10 +26,5 @@ const DatePickerMonth = ({handleStartChange, handleEndChange}) => (
     />
   </div>
 )
-
-DatePickerMonth.PropTypes = {
-  handleStartChange: PropTypes.func,
-  handleEndChange: PropTypes.func
-}
 
 export default DatePickerMonth
