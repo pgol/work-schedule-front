@@ -8,13 +8,14 @@ import { reducer as formReducer } from 'redux-form';
 
 import events from '../ducks/events.duck';
 import users from '../ducks/user.duck';
-import { watchGetUsers } from '../sagas/user.saga';
+import { watchGetUsers, watchLoginUser } from '../sagas/user.saga';
 
 //saga setup
 const sagaMiddleware = createSagaMiddleware();
 function* rootSaga() {
   yield all([
-    watchGetUsers()
+    watchGetUsers(),
+    watchLoginUser()
   ]);
 }
 

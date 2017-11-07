@@ -11,6 +11,9 @@ function makeUsersService({dataFetcher} : {dataFetcher: Object}) {
     },
     getEvents() {
       return dataFetcher.get('/events').then(unwrap)
+    },
+    login(data: Object) {
+      return dataFetcher.post('/login', data) 
     }
   }
 }
