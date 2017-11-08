@@ -27,7 +27,7 @@ class UsersView extends Component {
 UsersView.propTypes = {
   onLoadUsers: PropTypes.func,
   onSubmitForm: PropTypes.func,
-  users: ImmutablePropTypes.list
+  users: PropTypes.array
 }
 
 const mapStateToProps = state => ({

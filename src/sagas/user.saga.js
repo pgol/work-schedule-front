@@ -41,11 +41,10 @@ export function* loginSaga(action) {
     ...action,
     id: 1
   }
-  yield put(loginRequest())
+  yield put(loginRequest(action))
   try {
-    const token = yield call(usersService.login(data))
+    const token = yield call(usersService.login, data)
     yield put(loginComplete(token))
-    //@TODO: find promise error
   } catch (error) {
     console.log(error)
     yield put(loginComplete(error))

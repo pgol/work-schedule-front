@@ -21,7 +21,8 @@ const initialState = Map({
     token: ''
   }),
   items: List([]),
-  loading: false
+  loading: false,
+  logInProgress: false
 });
 
 export default handleActions({
@@ -39,6 +40,11 @@ export default handleActions({
       .set('items', fromJS(action.payload))
       .set('loading', false);
   },
+  [loginUser().type]: (state, action) => {
+    return state
+      .setIn(['profile', 'username'], action.payload.username)
+      .set('logInProgress', true)
+  },
   [loginRequest().type]: (state, action) => {
     return state
       .set('loading', true)
@@ -48,9 +54,11 @@ export default handleActions({
       return state
         .set('loading', false)
         .set('error', action.payload)
+        .set('logInProgress', false)
     }
     return state
       .set('loading', false)
-      .setIn(['profile', 'token'], action.payload)
+      .setIn(['profile', 'token'], action.payload.data.token)
+      .set('logInProgress', false)
   }
 }, initialState);
