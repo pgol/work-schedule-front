@@ -1,7 +1,7 @@
 // @flow
-import React from 'react'
-import moment from 'moment'
-import DatePickerMonth from './date-picker-month'
+import React from 'react';
+import moment from 'moment';
+import DatePickerMonth from './date-picker-month';
 
 /**
   * Maps type of view in calendar to look of form
@@ -12,15 +12,19 @@ import DatePickerMonth from './date-picker-month'
 type Props = {
   handleStartChange: Function,
   handleEndChange: Function,
-  view: Object,
-}
+  view: Object
+};
 
-const DatePicker = ({ handleStartChange, handleEndChange, view = {date: moment()}} : Props) => (
+const DatePicker = ({
+  handleStartChange,
+  handleEndChange,
+  view = { date: moment() }
+}: Props) => (
   <DatePickerMonth
     defaultValue={view.date}
     handleStartChange={handleStartChange}
     handleEndChange={handleEndChange}
   />
-)
+);
 
-export default DatePicker
+export default DatePicker;

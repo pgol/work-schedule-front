@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {loadUsers, submitUser} from '../../ducks/user.duck';
-import {getUsers as getUsersSelector} from '../../selectors/user.selectors';
+import { loadUsers, submitUser } from '../../ducks/user.duck';
+import { getUsers as getUsersSelector } from '../../selectors/user.selectors';
 import UsersForm from './users-form';
 
 class UsersView extends Component {
@@ -14,10 +14,10 @@ class UsersView extends Component {
 
   render() {
     return (
-      <div style={{margin: '15px 0'}}>
-        <UsersForm onSubmit={this.props.onSubmitForm}/>
+      <div style={{ margin: '15px 0' }}>
+        <UsersForm onSubmit={this.props.onSubmitForm} />
       </div>
-    )
+    );
   }
 }
 
@@ -35,7 +35,4 @@ const mapDispatchToProps = dispatch => ({
   onSubmitForm: data => dispatch(submitUser(data))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UsersView);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersView);
