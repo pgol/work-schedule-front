@@ -4,10 +4,19 @@
     "prettier",
     "prettier/react"
   ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true
+  },
   "plugins": [
+    "flowtype",
     "react",
     "prettier",
     "import",
     "jsx-a11y"
-  ]
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  }
 }
