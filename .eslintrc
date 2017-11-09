@@ -15,5 +15,8 @@
     "prettier",
     "import",
     "jsx-a11y"
-  ]
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  }
 }
