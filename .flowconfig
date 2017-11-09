@@ -1,7 +1,9 @@
+💩Flow config💩
 [ignore]
+/node_modules
 
 [include]
-
+./src
 [libs]
 
 [options]

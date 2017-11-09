@@ -1,5 +1,5 @@
-import {put} from 'redux-saga/effects'
-import {addEvent} from '../ducks/day.duck'
+import { put } from 'redux-saga/effects';
+import { addEvent } from '../ducks/day.duck';
 
 /**
  * Simple saga for adding event
@@ -7,5 +7,5 @@ import {addEvent} from '../ducks/day.duck'
  * @param {Object} event single event to be added to calendar
  */
 export function* addEventSaga(events, event) {
-  yield put(addEvent(events, event))
+  yield put(addEvent(events, event));
 }

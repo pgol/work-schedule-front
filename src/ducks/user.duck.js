@@ -1,5 +1,5 @@
-import {createAction, handleActions} from 'redux-actions';
-import {fromJS, List, Map} from 'immutable';
+import { createAction, handleActions } from 'redux-actions';
+import { fromJS, List, Map } from 'immutable';
 
 //action creators
 export const loadUsers = createAction('users/LOAD');
@@ -25,16 +25,16 @@ const initialState = Map({
   logInProgress: false
 });
 
-export default handleActions({
-  [requestUsers().type]: (state) => {
-    return state
-      .set('loading', true);
-  },
-  [receiveUsers().type]: (state, action) => {
-    if (action.error) {
-      return state
-        .set('loading', false)
-        .set('error', action.payload);
+export default handleActions(
+  {
+    [requestUsers().type]: state => {
+      return state.set('loading', true);
+    },
+    [receiveUsers().type]: (state, action) => {
+      if (action.error) {
+        return state.set('loading', false).set('error', action.payload);
+      }
+      return state.set('items', fromJS(action.payload)).set('loading', false);
     }
     return state
       .set('items', fromJS(action.payload))

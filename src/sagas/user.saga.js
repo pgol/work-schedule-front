@@ -66,7 +66,7 @@ export function* createUser({ payload }) {
 }
 
 export function* watchSubmitUser() {
-  yield takeEvery(submitUser().type, createUser)
+  yield takeEvery(submitUser().type, createUser);
 }
 
 export default function* rootSaga() {

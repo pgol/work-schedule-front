@@ -15,8 +15,8 @@ class UserForm extends Component {
         console.log('Received values of form: ', values)
         this.props.onLoginForm(values)
       }
-    })
-  }
+    });
+  };
 
   render() {
     const { getFieldDecorator } = this.props.form
@@ -58,7 +58,7 @@ class UserForm extends Component {
           </Button>
         </FormItem>
       </Form>
-    )
+    );
   }
 }
 //@TODO: connect not neccessary? check ant.d docs of Form component

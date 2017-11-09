@@ -2,7 +2,7 @@ import makeDataFetcher from './data-fetcher';
 
 describe('dataFetcher', () => {
   test('can be called', () => {
-    makeDataFetcher({fetch: {}, baseUrl: 'test'});
+    makeDataFetcher({ fetch: {}, baseUrl: 'test' });
   });
 
   test('build full url for calling endpoints', () => {

@@ -22,7 +22,7 @@ class UsersView extends Component {
         {this.props.profile.username && <UserProfile profile={this.props.profile} users={this.props.users} />}
         {!this.props.profile.username && <UsersForm onSubmit={this.props.onLoginForm}/>}
       </div>
-    )
+    );
   }
 }
 
