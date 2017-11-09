@@ -1,7 +1,13 @@
-import {call, put, takeEvery, all} from 'redux-saga/effects';
-import axios from 'axios'
+import { call, put, takeEvery, all } from 'redux-saga/effects';
+import axios from 'axios';
 
-import {requestUsers, receiveUsers, loadUsers, submitUser, submitUserDone} from '../ducks/user.duck';
+import {
+  requestUsers,
+  receiveUsers,
+  loadUsers,
+  submitUser,
+  submitUserDone
+} from '../ducks/user.duck';
 import makeDataFetcher from '../services/data-fetcher';
 import makeUsersService from '../services/users-service';
 
@@ -27,7 +33,7 @@ export function* watchGetUsers() {
   //yield takeEvery(loadUsers().type, getUsers);
 }
 
-export function* createUser({payload}) {
+export function* createUser({ payload }) {
   try {
     yield call(usersService.addUser, payload);
     yield put(loadUsers());
@@ -38,14 +44,10 @@ export function* createUser({payload}) {
   }
 }
 
-
 export function* watchSubmitUser() {
-  yield takeEvery(submitUser().type, createUser)
+  yield takeEvery(submitUser().type, createUser);
 }
 
 export default function* rootSaga() {
-  yield all([
-    watchGetUsers(),
-    watchSubmitUser()
-  ]);
+  yield all([watchGetUsers(), watchSubmitUser()]);
 }

@@ -13,9 +13,7 @@ import { watchGetUsers } from '../sagas/user.saga';
 //saga setup
 const sagaMiddleware = createSagaMiddleware();
 function* rootSaga() {
-  yield all([
-    watchGetUsers()
-  ]);
+  yield all([watchGetUsers()]);
 }
 
 //reducers setup
@@ -26,7 +24,6 @@ const rootReducer = combineReducers({
 });
 
 const middlewares = [sagaMiddleware];
-
 
 export default createStore(
   rootReducer,

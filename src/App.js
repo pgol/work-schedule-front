@@ -14,7 +14,6 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'antd/dist/antd.css';
 
 class App extends Component {
-
   render() {
     const { Header, Sider } = Layout;
 

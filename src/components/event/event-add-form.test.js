@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { shallow, render } from 'enzyme'
-import { EventAddForm } from './event-add-form'
-import moment from 'moment'
+import React, { Component } from 'react';
+import { shallow, render } from 'enzyme';
+import { EventAddForm } from './event-add-form';
+import moment from 'moment';
 
-import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Components::EventAddForm', () => {
@@ -13,16 +13,16 @@ describe('Components::EventAddForm', () => {
       event: {
         name: 'name'
       }
-    }
-    const component = shallow(<EventAddForm {...props} />)
-  })
+    };
+    const component = shallow(<EventAddForm {...props} />);
+  });
 
   it('component renders properly with props', () => {
     const props = {
       event: {
         name: 'name'
       }
-    }
-    const component = render(<EventAddForm {...props} />)
-  })
-})
+    };
+    const component = render(<EventAddForm {...props} />);
+  });
+});
